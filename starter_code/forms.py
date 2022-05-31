@@ -1,7 +1,8 @@
 from datetime import datetime
 from flask_wtf import Form
 from wtforms import StringField, SelectField, SelectMultipleField, DateTimeField, BooleanField
-from wtforms.validators import DataRequired, AnyOf, URL
+from wtforms.validators import DataRequired, AnyOf, URL, Regexp
+
 
 class ShowForm(Form):
     artist_id = StringField(
@@ -83,7 +84,7 @@ class VenueForm(Form):
         'address', validators=[DataRequired()]
     )
     phone = StringField(
-        'phone'
+        'phone', validators=[DataRequired(), Regexp(r'^[0-9]{3}-[0-9]{3}-[0-9]{4}$', message="Phone number must be in the format XXX-XXX-XXXX")]
     )
     image_link = StringField(
         'image_link'
@@ -92,6 +93,7 @@ class VenueForm(Form):
         # TODO implement enum restriction
         'genres', validators=[DataRequired()],
         choices=[
+            ('Afrobeat', 'Afrobeat'),
             ('Alternative', 'Alternative'),
             ('Blues', 'Blues'),
             ('Classical', 'Classical'),
@@ -193,7 +195,7 @@ class ArtistForm(Form):
     )
     phone = StringField(
         # TODO implement validation logic for phone 
-        'phone'
+        'phone', validators=[DataRequired(), Regexp(r'^[0-9]{3}-[0-9]{3}-[0-9]{4}$', message="Phone number must be in the format XXX-XXX-XXXX")]
     )
     image_link = StringField(
         'image_link'
@@ -201,6 +203,7 @@ class ArtistForm(Form):
     genres = SelectMultipleField(
         'genres', validators=[DataRequired()],
         choices=[
+            ('Afrobeat', 'Afrobeat'),
             ('Alternative', 'Alternative'),
             ('Blues', 'Blues'),
             ('Classical', 'Classical'),

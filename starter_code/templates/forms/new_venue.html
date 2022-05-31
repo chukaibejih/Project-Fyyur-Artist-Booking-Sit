@@ -24,8 +24,8 @@
         {{ form.address(class_ = 'form-control', autofocus = true) }}
       </div>
       <div class="form-group">
-          <label for="phone">Phone</label>
-          {{ form.phone(class_ = 'form-control', placeholder='xxx-xxx-xxxx', autofocus = true) }}
+          <label for="phone" id = "phone_no">Phone</label>
+          {{ form.phone(class_ = 'form-control', placeholder='xxx-xxx-xxxx', autofocus = true, id = 'phone_no') }}
         </div>
       <div class="form-group">
         <label for="genres">Genres</label>
@@ -60,4 +60,20 @@
       <input type="submit" value="Create Venue" class="btn btn-primary btn-lg btn-block">
     </form>
   </div>
+
+<script>
+  function validateForm(event) {
+    var phone_no = document.getElementById("phone_no").value;
+    var phone_no_regex = /^\d{3}-\d{3}-\d{4}$/;
+    if(!phone_no_regex.test(phone_no)) {
+      alert("Invalid phone number.");
+      return false;
+    }
+    return true;
+  }
+
+  document.getElementById("phone_no").addEventListener("submit", validateForm);
+  
+</script>
+
 {% endblock %}
