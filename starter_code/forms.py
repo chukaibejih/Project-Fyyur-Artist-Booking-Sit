@@ -90,7 +90,7 @@ class VenueForm(Form):
         'image_link'
     )
     genres = SelectMultipleField(
-        # TODO implement enum restriction
+        # implemented enum restriction
         'genres', validators=[DataRequired()],
         choices=[
             ('Afrobeat', 'Afrobeat'),
@@ -194,7 +194,7 @@ class ArtistForm(Form):
         ]
     )
     phone = StringField(
-        # TODO implement validation logic for phone 
+        # implemented validation logic for phone 
         'phone', validators=[DataRequired(), Regexp(r'^[0-9]{3}-[0-9]{3}-[0-9]{4}$', message="Phone number must be in the format XXX-XXX-XXXX")]
     )
     image_link = StringField(

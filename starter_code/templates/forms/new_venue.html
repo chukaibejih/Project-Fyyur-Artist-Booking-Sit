@@ -61,19 +61,5 @@
     </form>
   </div>
 
-<script>
-  function validateForm(event) {
-    var phone_no = document.getElementById("phone_no").value;
-    var phone_no_regex = /^\d{3}-\d{3}-\d{4}$/;
-    if(!phone_no_regex.test(phone_no)) {
-      alert("Invalid phone number.");
-      return false;
-    }
-    return true;
-  }
-
-  document.getElementById("phone_no").addEventListener("submit", validateForm);
-  
-</script>
 
 {% endblock %}
