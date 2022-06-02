@@ -90,7 +90,7 @@ class VenueForm(Form):
         'image_link'
     )
     genres = SelectMultipleField(
-        # implemented enum restriction
+        # implement enum restriction
         'genres', validators=[DataRequired()],
         choices=[
             ('Afrobeat', 'Afrobeat'),

@@ -74,34 +74,39 @@ def search_venues():
 @app.route('/venues/<int:venue_id>')
 def show_venue(venue_id):
   # shows the venue page with the given venue_id including it's upcoming and past shows
-  # current_date = datetime.now()
-  # upcoming_shows = []
-  # past_shows = []
-  # venue = Venue.query.get(venue_id)
-  # for show in venue.shows:
-  #   if show.start_time > current_date:
-  #         upcoming_shows.append(show)
-  #   else:
-  #     past_shows.append(show)
-  # data = vars(venue)
-  # data['upcoming_shows'] = upcoming_shows
-  # data['past_shows'] = past_shows
-  # data['upcoming_shows_count'] = len(upcoming_shows)
-  # data['past_shows_count'] = len(past_shows)
+
+  current_date = datetime.now()
+  upcoming_shows = []
+  past_shows = []
+  venue = Venue.query.get(venue_id)
+  for show in venue.shows:
+    if show.start_time > current_date:
+          upcoming_shows.append(show)
+    else:
+      past_shows.append(show)
+  data = vars(venue)
+  data['upcoming_shows'] = upcoming_shows
+  data['past_shows'] = past_shows
+  data['upcoming_shows_count'] = len(upcoming_shows)
+  data['past_shows_count'] = len(past_shows)
 
   # past_shows_query = db.session.query(Show).join(Venue).filter(Show.artist_id==Artist.id).filter
   # (Show.start_time<datetime.now())   
-  # past_shows = [] 
+  # past_shows = []
   # for show in past_shows_query():
   #     past_shows.append(show)
+  # data['past_shows'] = past_shows
+  # data['past_shows_count'] = len(past_shows)
 
   # upcoming_shows_query = db.session.query(Show).join(Venue).filter(Show.artist_id==Artist.id).filter
   # (Show.start_time>datetime.now())
   # upcoming_shows = []
   # for show in upcoming_shows_query():
-  #     upcoming_shows.append(show) 
+  #     upcoming_shows.append(show)
+  # data['upcoming_shows'] = upcoming_shows
+  # data['upcoming_shows_count'] = len(upcoming_shows)
  
- 
+
   data = Venue.query.get(venue_id)
   return render_template('pages/show_venue.html', venue=data)
 
